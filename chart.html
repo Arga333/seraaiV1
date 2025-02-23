@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SERA AI Meme Coin</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css">
+    <link rel="stylesheet" href="assets/css/style.css">
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap');
+        body {
+            background: linear-gradient(120deg, #000428, #004e92);
+            color: #00ffff;
+            font-family: 'Press Start 2P', cursive;
+            text-align: center;
+        }
+        .navbar {
+            background: rgba(0, 0, 0, 0.8);
+        }
+        .navbar-brand, .nav-link {
+            color: #00ffff !important;
+        }
+        .container {
+            padding-top: 50px;
+        }
+        .telegram-btn, .trade-btn {
+            background: #0088cc;
+            color: white;
+            padding: 15px 25px;
+            font-size: 18px;
+            border: none;
+            border-radius: 10px;
+            text-decoration: none;
+            transition: 0.3s;
+        }
+        .telegram-btn:hover, .trade-btn:hover {
+            background: #006699;
+        }
+        .chart-container {
+            width: 100%;
+            max-width: 800px;
+            margin: auto;
+            padding: 20px;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 10px;
+        }
+    </style>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+<body>
+    <header>
+        <nav class="navbar navbar-expand-lg">
+            <div class="container">
+                <a class="navbar-brand" href="index.html">SERA AI Meme Coin</a>
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="collapse navbar-collapse" id="navbarNav">
+                    <ul class="navbar-nav ms-auto">
+                        <li class="nav-item"><a class="nav-link" href="index.html">Home</a></li>
+                        <li class="nav-item"><a class="nav-link" href="about.html">About</a></li>
+                        <li class="nav-item"><a class="nav-link" href="chart.html">Chart</a></li>
+                        <li class="nav-item"><a class="nav-link active" href="telegram.html">Telegram</a></li>
+                    </ul>
+                </div>
+            </div>
+        </nav>
+    </header>
+    <main class="container">
+        <h2>Join Our Telegram Community</h2>
+        <p class="lead">Click the button below to join our Telegram group.</p>
+        <a href="https://t.me/SERAAITOKEN" class="telegram-btn" target="_blank">Join on Telegram</a>
+
+        <h2 class="mt-5">SERA AI Price Chart</h2>
+        <p class="lead">Monitor SERA AI's price and market movements.</p>
+        <div class="chart-container">
+            <canvas id="seraChart"></canvas>
+        </div>
+        <br>
+        <a href="https://exchange-link.com" class="trade-btn" target="_blank">Trade Now</a>
+    </main>
+    <footer class="text-white py-3">
+        <p>&copy; 2025 SERA AI Meme Coin</p>
+    </footer>
+    <script>
+        const ctx = document.getElementById('seraChart').getContext('2d');
+        const seraChart = new Chart(ctx, {
+            type: 'line',
+            data: {
+                labels: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'],
+                datasets: [{
+                    label: 'SERA AI Price',
+                    data: [5, 6, 8, 10, 12, 15, 14, 18, 20, 25, 30, 35],
+                    borderColor: '#00ffff',
+                    borderWidth: 2,
+                    fill: false
+                }]
+            },
+            options: {
+                responsive: true,
+                maintainAspectRatio: false
+            }
+        });
+    </script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>
