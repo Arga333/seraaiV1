@@ -35,11 +35,25 @@
             padding: 20px;
             background: rgba(0, 0, 0, 0.8);
             border-radius: 10px;
+            color: #00ff00;
+            font-family: monospace;
+            text-align: left;
         }
         #loading {
             display: none;
             font-size: 14px;
             color: yellow;
+        }
+        #terminal {
+            background: black;
+            color: #00ff00;
+            font-family: monospace;
+            padding: 10px;
+            height: 200px;
+            overflow-y: auto;
+            text-align: left;
+            border-radius: 5px;
+            margin-top: 10px;
         }
     </style>
 </head>
@@ -74,6 +88,7 @@
             <p>Balance: <span id="balance">0 SOL</span></p>
             <button id="mineButton" class="btn btn-primary">Start Mining</button>
             <p id="loading">Mining in progress...</p>
+            <div id="terminal"></div>
         </div>
     </main>
     <footer class="text-white py-3">
@@ -81,20 +96,31 @@
     </footer>
 
     <script>
-        let walletAddress = "0xABCDEF1234567890SOLANA"; // Simulated wallet address
+        let walletAddress = "0xABCDEF1234567890SOLANA";
         let balance = 0;
-        
         document.getElementById("walletAddress").innerText = walletAddress;
         
         document.getElementById("mineButton").addEventListener("click", function() {
             let loadingText = document.getElementById("loading");
+            let terminal = document.getElementById("terminal");
+            terminal.innerHTML = "";
             loadingText.style.display = "block";
             
-            setTimeout(() => {
-                balance += 0.05; // Simulated mining reward
-                document.getElementById("balance").innerText = balance.toFixed(2) + " SOL";
-                loadingText.style.display = "none";
-            }, 3000);
+            let files = ["config.sys", "boot.ini", "wallet.sol", "blockchain.dat", "node.js", "index.html", "server.js", "data.log"];
+            let index = 0;
+            let interval = setInterval(() => {
+                if (index < files.length) {
+                    terminal.innerHTML += `Mining... Processing <span style='color:yellow;'>${files[index]}</span><br>`;
+                    terminal.scrollTop = terminal.scrollHeight;
+                    index++;
+                } else {
+                    clearInterval(interval);
+                    balance += 0.05;
+                    document.getElementById("balance").innerText = balance.toFixed(2) + " SOL";
+                    loadingText.style.display = "none";
+                    terminal.innerHTML += "<span style='color:lime;'>Mining complete! Reward: 0.05 SOL</span><br>";
+                }
+            }, 500);
         });
     </script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
