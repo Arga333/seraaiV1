@@ -55,6 +55,21 @@
             border-radius: 5px;
             margin-top: 10px;
         }
+        .solana-animation {
+            width: 50px;
+            height: 50px;
+            position: relative;
+            margin: 20px auto;
+            animation: bounce 1s infinite alternate;
+        }
+        @keyframes bounce {
+            from {
+                transform: translateY(0);
+            }
+            to {
+                transform: translateY(-20px);
+            }
+        }
     </style>
 </head>
 <body>
@@ -92,6 +107,7 @@
             <button id="mineButton" class="btn btn-primary">Start Mining</button>
             <p id="loading">Mining in progress...</p>
             <div id="terminal"></div>
+            <img src="assets/images/solana_pixel.png" alt="Solana Pixel" class="solana-animation">
         </div>
     </main>
     <footer class="text-white py-3">
