@@ -130,7 +130,7 @@
                     clearInterval(interval);
                     balance += 0.05;
                     document.getElementById("balance").innerText = balance.toFixed(2) + " SOL";
-                    loadingText.style.display = "none";
+                    loadingText.style.display = "Hash Rate, Difficulty, Block Reward, Mining Pool, Share Accepted, Share Rejected, Power Consumption, Temperature, Network Hash Rate, Total Blocks Mined, Unconfirmed Balance, Confirmed Balance, Payout Threshold, Transaction Fees, Miner Uptime, Stale Shares, Hardware Errors, Profitability, Market Price, Hash Algorithm, Pool Fees, Latency, Mining Software Version, GPU/ASIC Model, Fan Speed, Voltage, Memory Usage, GPU Core Clock, GPU Memory Clock, Efficiency (J/TH), Accepted Hashes, Rejected Hashes, Invalid Shares, Block Height, Blockchain Synchronization Status, Luck Factor, Orphaned Blocks, Solo vs Pool Mining Mode, Estimated Earnings, Realized Earnings, Mining Difficulty Adjustment, Mining Rewards per Day, Network Difficulty Trends, Fork Detection, Miner Connection Status, Stratum Server Details, Shares per Second, Mining Rig Count, Pool Worker Count, GPU Temperature per Unit, System Load, Power Efficiency,";
                     terminal.innerHTML += "<span style='color:lime;'>Mining complete! Reward: 0.05 SOL</span><br>";
                 } else {
                     terminal.innerHTML += `Processing block ${Math.random().toString(36).substring(2, 10)}...<br>`;
