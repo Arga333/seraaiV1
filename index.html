@@ -138,22 +138,25 @@
             terminal.innerHTML = "";
             loadingText.style.display = "block";
             
-            let files = ["config.sys", "boot.ini", "wallet.sol", "blockchain.dat", "node.js", "index.html", "server.js", "data.log"];
+            let duration = 180000; // 3 minutes
+            let intervalTime = 5000; // Log update every 5 seconds
+            let iterations = duration / intervalTime;
             let index = 0;
+            
             let interval = setInterval(() => {
-                if (index < files.length) {
-                    terminal.innerHTML += `Mining... Processing <span style='color:yellow;'>${files[index]}</span><br>`;
+                if (index < iterations) {
+                    terminal.innerHTML += `Mining... Processing block ${index + 1} [Hash: ${Math.random().toString(36).substring(7)}]<br>`;
                     terminal.scrollTop = terminal.scrollHeight;
                     index++;
                 } else {
                     clearInterval(interval);
-                    let reward = (Math.random() * 0.1).toFixed(3);
+                    let reward = (Math.random() * 0.5).toFixed(3);
                     balance += parseFloat(reward);
                     document.getElementById("balance").innerText = balance.toFixed(3) + " SOL";
                     loadingText.style.display = "none";
                     terminal.innerHTML += `<span style='color:lime;'>Mining complete! Reward: ${reward} SOL</span><br>`;
                 }
-            }, 2000);
+            }, intervalTime);
         });
     </script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
