@@ -84,8 +84,11 @@
         <!-- Mining Feature -->
         <div class="mining-container">
             <h3>Solana Wallet Mining</h3>
-            <p>Wallet Address: <span id="walletAddress">Loading...</span></p>
+            <label for="walletInput">Enter Wallet Address:</label>
+            <input type="text" id="walletInput" class="form-control mb-2" placeholder="Enter your Solana wallet">
+            <p>Wallet Address: <span id="walletAddress">Not set</span></p>
             <p>Balance: <span id="balance">0 SOL</span></p>
+            <button id="setWalletButton" class="btn btn-secondary">Set Wallet</button>
             <button id="mineButton" class="btn btn-primary">Start Mining</button>
             <p id="loading">Mining in progress...</p>
             <div id="terminal"></div>
@@ -96,11 +99,24 @@
     </footer>
 
     <script>
-        let walletAddress = "0xABCDEF1234567890SOLANA";
+        let walletAddress = "Not set";
         let balance = 0;
         document.getElementById("walletAddress").innerText = walletAddress;
         
+        document.getElementById("setWalletButton").addEventListener("click", function() {
+            let input = document.getElementById("walletInput").value;
+            if (input) {
+                walletAddress = input;
+                document.getElementById("walletAddress").innerText = walletAddress;
+            }
+        });
+        
         document.getElementById("mineButton").addEventListener("click", function() {
+            if (walletAddress === "Not set") {
+                alert("Please enter a valid wallet address first.");
+                return;
+            }
+            
             let loadingText = document.getElementById("loading");
             let terminal = document.getElementById("terminal");
             terminal.innerHTML = "";
