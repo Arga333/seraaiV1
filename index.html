@@ -6,10 +6,10 @@
     <title>Home - SERA AI</title>
     <link rel="icon" type="image/jpg" href="assets/S.jpg">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css">
+    <link rel="stylesheet" href="assets/css/style.css">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/web3/1.8.2/web3.min.js"></script>
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap');
-        
         body {
             background: url('assets/images/background.png') no-repeat center center fixed;
             background-size: cover;
@@ -34,19 +34,19 @@
         .navbar-brand, .nav-link {
             color: #00ffff !important;
         }
-        .logo {
-            margin-top: 50px;
-            width: 100px;
-            height: auto;
-        }
-        .animated-text {
+        .typing-container {
             font-size: 20px;
-            white-space: nowrap;
-            overflow: hidden;
+            font-weight: bold;
             display: inline-block;
             border-right: 3px solid #00ffff;
-            padding-right: 5px;
-            animation: blink 0.8s infinite alternate;
+            white-space: nowrap;
+            overflow: hidden;
+            width: 0;
+            animation: typing 3s steps(40, end) forwards, blink 0.8s infinite;
+        }
+        @keyframes typing {
+            from { width: 0; }
+            to { width: 100%; }
         }
         @keyframes blink {
             50% { border-color: transparent; }
@@ -72,37 +72,35 @@
             </div>
         </nav>
     </header>
-
     <main class="container">
         <img src="assets/images/S.jpg" alt="SERA AI Logo" class="logo">
-        <h2 class="animated-text" id="animatedText"></h2>
+        <br><br>
+        <div id="typing-text" class="typing-container"></div>
     </main>
-
     <footer class="text-white py-3">
         <p>&copy; 2025 SERA AI</p>
     </footer>
-
+    <audio id="typeSound" src="assets/sounds/ai_typing.mp3"></audio>
     <script>
-        const text = "Welcome to SERA AI - The future of AI-based coins full of innovation and a global community.";
-        const textElement = document.getElementById("animatedText");
-        let index = 0;
-        const soundEffect = new Audio("assets/sounds/ai_typing.mp3");
-        
-        function typeText() {
-            if (index < text.length) {
-                textElement.innerHTML += text[index];
-                soundEffect.currentTime = 0;
-                soundEffect.play().catch(err => console.log("Sound error: ", err));
-                index++;
-                setTimeout(typeText, 100);
+        document.addEventListener("DOMContentLoaded", function() {
+            let text = "Welcome to SERA AI. The future of AI-based coins full of innovation and a global community.";
+            let i = 0;
+            let typingContainer = document.getElementById("typing-text");
+            let audio = document.getElementById("typeSound");
+
+            function typeWriter() {
+                if (i < text.length) {
+                    typingContainer.innerHTML += text.charAt(i);
+                    i++;
+                    audio.play();
+                    setTimeout(typeWriter, 100);
+                } else {
+                    typingContainer.style.borderRight = "none";
+                }
             }
-        }
-        
-        document.addEventListener("click", function() {
-            if (index === 0) {
-                typeText();
-            }
-        }, { once: true });
+            typeWriter();
+        });
     </script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
 </body>
 </html>
