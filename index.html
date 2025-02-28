@@ -4,55 +4,32 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Home - SERA AI</title>
-    <link rel="icon" type="image/jpg" href="assets/S.jpg">
+    <link rel="icon" type="image/jpg" href="assets/images/S.jpg">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css">
     <link rel="stylesheet" href="assets/css/style.css">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/web3/1.8.2/web3.min.js"></script>
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap');
-
-        /* Background Image */
         body {
-            background: url('assets/images/background.png') no-repeat center center fixed;
-            background-size: cover;
+            background: linear-gradient(120deg, #000428, #004e92);
             color: #00ffff;
             font-family: 'Press Start 2P', cursive;
             text-align: center;
-            position: relative;
         }
-
-        /* Overlay untuk membuat teks lebih terlihat */
-        body::before {
-            content: "";
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: rgba(0, 0, 0, 0.7); /* Overlay gelap */
-            z-index: -1;
-        }
-
         .navbar {
             background: rgba(0, 0, 0, 0.8);
         }
-
         .navbar-brand, .nav-link {
             color: #00ffff !important;
         }
-
         .logo {
             margin-top: 50px;
             width: 100px;
             height: auto;
         }
-
         .container {
             padding-top: 20px;
-            position: relative;
-            z-index: 1;
         }
-
         .mining-container {
             margin-top: 50px;
             padding: 20px;
@@ -62,13 +39,11 @@
             font-family: monospace;
             text-align: left;
         }
-
         #loading {
             display: none;
             font-size: 14px;
             color: yellow;
         }
-
         #terminal {
             background: black;
             color: #00ff00;
@@ -80,7 +55,6 @@
             border-radius: 5px;
             margin-top: 10px;
         }
-
         .solana-animation {
             width: 50px;
             height: 50px;
@@ -88,7 +62,6 @@
             margin: 20px auto;
             animation: bounce 1s infinite alternate;
         }
-
         @keyframes bounce {
             from {
                 transform: translateY(0);
@@ -104,7 +77,7 @@
         <nav class="navbar navbar-expand-lg">
             <div class="container">
                 <a class="navbar-brand" href="index.html">SERA AI</a>
-                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
                     <span class="navbar-toggler-icon"></span>
                 </button>
                 <div class="collapse navbar-collapse" id="navbarNav">
@@ -118,28 +91,10 @@
             </div>
         </nav>
     </header>
-<p>
     <main class="container">
         <img src="assets/images/S.jpg" alt="SERA AI Logo" class="logo">
-</p>
-        <br>
-      <br>
-     <br>
-     <br>
-     <br>
-     <br>
-     <br>
-     <br>
-     <br>
-     <br>
-     <br>
-     <br>
-     <br>
-        <p>
         <h2>Welcome to SERA AI</h2>
         <p class="lead">The future of AI-based coins full of innovation and a global community.</p>
-</p>
-        <!-- Mining Feature -->
         <div class="mining-container">
             <h3>Solana Wallet Mining</h3>
             <label for="walletInput">Enter Wallet Address:</label>
@@ -153,16 +108,14 @@
             <img src="assets/images/Solana-Coin-PNG.png" alt="Solana Pixel" class="solana-animation">
         </div>
     </main>
-
     <footer class="text-white py-3">
         <p>&copy; 2025 SERA AI</p>
     </footer>
-
     <script>
         let walletAddress = "Not set";
         let balance = 0;
         document.getElementById("walletAddress").innerText = walletAddress;
-
+        
         document.getElementById("setWalletButton").addEventListener("click", function() {
             let input = document.getElementById("walletInput").value;
             if (input) {
@@ -170,23 +123,22 @@
                 document.getElementById("walletAddress").innerText = walletAddress;
             }
         });
-
+        
         document.getElementById("mineButton").addEventListener("click", function() {
             if (walletAddress === "Not set") {
                 alert("Please enter a valid wallet address first.");
                 return;
             }
-
             let loadingText = document.getElementById("loading");
             let terminal = document.getElementById("terminal");
             terminal.innerHTML = "";
             loadingText.style.display = "block";
-
-            let duration = 180000; // 3 minutes
-            let intervalTime = 5000; // Log update every 5 seconds
+            
+            let duration = 180000;
+            let intervalTime = 5000;
             let iterations = duration / intervalTime;
             let index = 0;
-
+            
             let interval = setInterval(() => {
                 if (index < iterations) {
                     terminal.innerHTML += `Mining... Processing block ${index + 1} [Hash: ${Math.random().toString(36).substring(7)}]<br>`;
@@ -203,7 +155,6 @@
             }, intervalTime);
         });
     </script>
-
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
 </body>
-</html> 
+</html>
