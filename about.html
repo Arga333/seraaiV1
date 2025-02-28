@@ -28,7 +28,6 @@
             padding-top: 50px;
         }
 
-        /* Tabel */
         .table-container {
             display: none;
             width: 80%;
@@ -55,7 +54,6 @@
             color: white;
         }
 
-        /* Animasi Koin */
         .coin {
             width: 30px;
             height: 30px;
@@ -75,7 +73,6 @@
             }
         }
 
-        /* Navigasi Slide */
         .slide-buttons {
             margin-top: 20px;
         }
@@ -94,7 +91,6 @@
             background: #00cc00;
         }
 
-        /* Footer */
         footer {
             margin-top: 50px;
             background: rgba(0, 0, 0, 0.8);
@@ -108,30 +104,13 @@
         <nav class="navbar navbar-expand-lg">
             <div class="container">
                 <a class="navbar-brand" href="index.html">SERA AI</a>
-                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-                    <span class="navbar-toggler-icon"></span>
-                </button>
-                <div class="collapse navbar-collapse" id="navbarNav">
-                    <ul class="navbar-nav ms-auto">
-                        <li class="nav-item"><a class="nav-link" href="index.html">Home</a></li>
-                        <li class="nav-item"><a class="nav-link active" href="about.html">About</a></li>
-                        <li class="nav-item"><a class="nav-link" href="chart.html">Chart</a></li>
-                        <li class="nav-item"><a class="nav-link" href="telegram.html">Telegram</a></li>
-                    </ul>
-                </div>
             </div>
         </nav>
     </header>
 
     <main class="container">
         <h2>Top Rank Mining Wallet</h2>
-
-        <!-- Container untuk tabel -->
-        <div id="tables-container">
-            <!-- Tabel akan dimasukkan lewat JavaScript -->
-        </div>
-
-        <!-- Navigasi Slide -->
+        <div id="tables-container"></div>
         <div class="slide-buttons">
             <button class="btn-slide" onclick="prevSlide()">⟨ Previous</button>
             <button class="btn-slide" onclick="nextSlide()">Next ⟩</button>
@@ -142,18 +121,16 @@
         <p>&copy; 2025 SERA AI</p>
     </footer>
 
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
     <script>
         let wallets = [];
         for (let i = 1; i <= 100; i++) {
             wallets.push({
                 rank: i,
                 walletID: `0x${Math.random().toString(36).substring(2, 6)}****${Math.random().toString(36).substring(2, 6)}`,
-                value: Math.floor(Math.random() * 10000) + 1000 + " SOL"
+                value: (11000 - i * 100) + " SOL"
             });
         }
 
-        // Membagi ke dalam kelompok tabel (5 wallet per tabel)
         let slides = [];
         for (let i = 0; i < wallets.length; i += 5) {
             slides.push(wallets.slice(i, i + 5));
