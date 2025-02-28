@@ -4,110 +4,43 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Top Rank Mining Wallet</title>
-    <link rel="icon" type="image/jpg" href="assets/images/Serai.jpg">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css">
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap');
-
         body {
             background: linear-gradient(120deg, #000428, #004e92);
             color: #00ffff;
             font-family: 'Press Start 2P', cursive;
             text-align: center;
         }
-
-        .navbar {
-            background: rgba(0, 0, 0, 0.8);
-        }
-
-        .navbar-brand, .nav-link {
-            color: #00ffff !important;
-        }
-
-        .container {
-            padding-top: 50px;
-        }
-
-        .table-container {
-            display: none;
+        .container { padding-top: 50px; }
+        table {
             width: 80%;
             margin: auto;
-        }
-
-        table {
-            width: 100%;
             border-collapse: collapse;
             border: 3px solid #00ff00;
             background: #222;
-            color: #ffffff;
+            color: white;
         }
-
         th, td {
             border: 2px solid #00ff00;
             padding: 15px;
             text-align: center;
-            position: relative;
         }
-
-        th {
-            background: #00aa00;
-            color: white;
-        }
-
-        .coin {
-            width: 30px;
-            height: 30px;
-            position: absolute;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%);
-            animation: fly 1s infinite alternate;
-        }
-
-        @keyframes fly {
-            from {
-                transform: translate(-50%, -50%) translateY(0);
-            }
-            to {
-                transform: translate(-50%, -50%) translateY(-10px);
-            }
-        }
-
-        .slide-buttons {
-            margin-top: 20px;
-        }
-
+        th { background: #00aa00; }
+        .coin { width: 30px; height: 30px; }
+        .slide-buttons { margin-top: 20px; }
         .btn-slide {
             background: #00ff00;
             color: black;
-            font-weight: bold;
             padding: 10px 20px;
             border: none;
             cursor: pointer;
-            transition: 0.3s;
         }
-
-        .btn-slide:hover {
-            background: #00cc00;
-        }
-
-        footer {
-            margin-top: 50px;
-            background: rgba(0, 0, 0, 0.8);
-            color: white;
-            padding: 10px 0;
-        }
+        .btn-slide:hover { background: #00cc00; }
     </style>
 </head>
 <body>
-    <header>
-        <nav class="navbar navbar-expand-lg">
-            <div class="container">
-                <a class="navbar-brand" href="index.html">SERA AI</a>
-            </div>
-        </nav>
-    </header>
-
     <main class="container">
         <h2>Top Rank Mining Wallet</h2>
         <div id="tables-container"></div>
@@ -116,36 +49,27 @@
             <button class="btn-slide" onclick="nextSlide()">Next ⟩</button>
         </div>
     </main>
-
-    <footer>
-        <p>&copy; 2025 SERA AI</p>
-    </footer>
-
     <script>
         let wallets = [];
         for (let i = 1; i <= 100; i++) {
             wallets.push({
                 rank: i,
                 walletID: `0x${Math.random().toString(36).substring(2, 6)}****${Math.random().toString(36).substring(2, 6)}`,
-                value: (11000 - i * 100) + " SOL"
+                value: (5 - (i * 0.047)).toFixed(3) + " SOL"
             });
         }
-
         let slides = [];
         for (let i = 0; i < wallets.length; i += 5) {
             slides.push(wallets.slice(i, i + 5));
         }
-
         let currentSlide = 0;
         let container = document.getElementById("tables-container");
-
         function renderSlides() {
             container.innerHTML = "";
             slides.forEach((slide, index) => {
                 let table = document.createElement("div");
                 table.classList.add("table-container");
                 if (index === 0) table.style.display = "block";
-
                 let tableHTML = `<table>
                     <tr>
                         <th>Rank</th>
@@ -153,7 +77,6 @@
                         <th>Coin</th>
                         <th>Value</th>
                     </tr>`;
-                
                 slide.forEach(wallet => {
                     tableHTML += `
                     <tr>
@@ -163,13 +86,11 @@
                         <td>${wallet.value}</td>
                     </tr>`;
                 });
-
                 tableHTML += `</table>`;
                 table.innerHTML = tableHTML;
                 container.appendChild(table);
             });
         }
-
         function showSlide(index) {
             let tables = document.querySelectorAll(".table-container");
             if (index < 0) index = slides.length - 1;
@@ -179,15 +100,8 @@
             });
             currentSlide = index;
         }
-
-        function nextSlide() {
-            showSlide(currentSlide + 1);
-        }
-
-        function prevSlide() {
-            showSlide(currentSlide - 1);
-        }
-
+        function nextSlide() { showSlide(currentSlide + 1); }
+        function prevSlide() { showSlide(currentSlide - 1); }
         renderSlides();
     </script>
 </body>
