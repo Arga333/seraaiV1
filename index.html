@@ -9,69 +9,83 @@
     <link rel="stylesheet" href="assets/css/style.css">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/web3/1.8.2/web3.min.js"></script>
     <style>
-        @import url('https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap');
-        /* Background Image */
-        body {
-            background: url('assets/images/background.png') no-repeat center center fixed;
-            background-size: cover;
-            color: #00ffff;
-            font-family: 'Press Start 2P', cursive;
-            text-align: center;
-            position: relative;
-        .navbar {
-            background: rgba(0, 0, 0, 0.8);
-        }
-        .navbar-brand, .nav-link {
-            color: #00ffff !important;
-        }
-        .logo {
-            margin-top: 50px;
-            width: 100px;
-            height: auto;
-        }
-        .container {
-            padding-top: 20px;
-        }
-        .mining-container {
-            margin-top: 50px;
-            padding: 20px;
-            background: rgba(0, 0, 0, 0.8);
-            border-radius: 10px;
-            color: #00ff00;
-            font-family: monospace;
-            text-align: left;
-        }
-        #loading {
-            display: none;
-            font-size: 14px;
-            color: yellow;
-        }
-        #terminal {
-            background: black;
-            color: #00ff00;
-            font-family: monospace;
-            padding: 10px;
-            height: 200px;
-            overflow-y: auto;
-            text-align: left;
-            border-radius: 5px;
-            margin-top: 10px;
-        }
-        .solana-animation {
-            width: 50px;
-            height: 50px;
-            position: relative;
-            margin: 20px auto;
-            animation: bounce 1s infinite alternate;
-        }
-        @keyframes bounce {
-            from {
-                transform: translateY(0);
-            }
-            to {
-                transform: translateY(-20px);
-            }
-        }
+@import url('https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap');
+
+/* Background Image */
+body {
+    background: url('assets/images/background.png') no-repeat center center fixed;
+    background-size: cover;
+    color: #00ffff;
+    font-family: 'Press Start 2P', cursive;
+    text-align: center;
+    position: relative;
+}
+
+.navbar {
+    background: rgba(0, 0, 0, 0.8);
+}
+
+.navbar-brand, .nav-link {
+    color: #00ffff !important;
+}
+
+.logo {
+    margin-top: 50px;
+    width: 100px;
+    height: auto;
+}
+
+.container {
+    padding-top: 20px;
+}
+
+.mining-container {
+    margin-top: 50px;
+    padding: 20px;
+    background: rgba(0, 0, 0, 0.8);
+    border-radius: 10px;
+    color: #00ff00;
+    font-family: monospace;
+    text-align: left;
+}
+
+#loading {
+    display: none;
+    font-size: 14px;
+    color: yellow;
+}
+
+#terminal {
+    background: black;
+    color: #00ff00;
+    font-family: monospace;
+    padding: 10px;
+    height: 200px;
+    overflow-y: auto;
+    text-align: left;
+    border-radius: 5px;
+    margin-top: 10px;
+}
+
+/* Animasi Solana Coin */
+.solana-animation {
+    width: 50px;
+    height: 50px;
+    display: block;
+    margin: 20px auto;
+    position: relative;
+    animation: bounce 1s infinite alternate;
+}
+
+@keyframes bounce {
+    from {
+        transform: translateY(0);
+    }
+    to {
+        transform: translateY(-20px);
+    }
+}
+
     </style>
 </head>
 <body>
