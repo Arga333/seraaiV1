@@ -110,7 +110,107 @@ body {
     <main class="container">
         <img src="assets/images/S.jpg" alt="SERA AI Logo" class="logo">
         <h2>Welcome to SERA AI</h2>
-        <p class="lead">- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -</p>
+
+        
+
+
+        
+        <p class="lead"><!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pixel Coin Table</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap');
+
+        /* Styling Pixel Table */
+        body {
+            background: black;
+            color: #00ff00;
+            font-family: 'Press Start 2P', cursive;
+            text-align: center;
+        }
+
+        table {
+            width: 50%;
+            margin: 50px auto;
+            border-collapse: collapse;
+            border: 3px solid #00ff00;
+            background: #222;
+        }
+
+        th, td {
+            border: 2px solid #00ff00;
+            padding: 20px;
+            text-align: center;
+            position: relative;
+        }
+
+        th {
+            background: #00aa00;
+            color: #fff;
+        }
+
+        /* Animasi Koin Terbang */
+        .coin {
+            width: 30px;
+            height: 30px;
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            animation: fly 1s infinite alternate;
+        }
+
+        @keyframes fly {
+            from {
+                transform: translate(-50%, -50%) translateY(0);
+            }
+            to {
+                transform: translate(-50%, -50%) translateY(-10px);
+            }
+        }
+    </style>
+</head>
+<body>
+    <h2>Pixel Coin Table</h2>
+    <table>
+        <tr>
+            <th>Rank</th>
+            <th>Coin</th>
+            <th>Value</th>
+        </tr>
+        <tr>
+            <td>1</td>
+            <td>
+                <img src="assets/images/coin.png" class="coin" alt="Coin">
+            </td>
+            <td>1000 SOL</td>
+        </tr>
+        <tr>
+            <td>2</td>
+            <td>
+                <img src="assets/images/coin.png" class="coin" alt="Coin">
+            </td>
+            <td>750 SOL</td>
+        </tr>
+        <tr>
+            <td>3</td>
+            <td>
+                <img src="assets/images/coin.png" class="coin" alt="Coin">
+            </td>
+            <td>500 SOL</td>
+        </tr>
+    </table>
+</body>
+</html>
+</p>
+
+
+
+
+        
         <div class="mining-container">
             <h3>Solana Wallet Mining</h3>
             <label for="walletInput">Enter Wallet Address:</label>
