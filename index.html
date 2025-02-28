@@ -30,46 +30,6 @@
         .container {
             padding-top: 20px;
         }
-        .mining-container {
-            margin-top: 50px;
-            padding: 20px;
-            background: rgba(0, 0, 0, 0.8);
-            border-radius: 10px;
-            color: #00ff00;
-            font-family: monospace;
-            text-align: left;
-        }
-        #loading {
-            display: none;
-            font-size: 14px;
-            color: yellow;
-        }
-        #terminal {
-            background: black;
-            color: #00ff00;
-            font-family: monospace;
-            padding: 10px;
-            height: 200px;
-            overflow-y: auto;
-            text-align: left;
-            border-radius: 5px;
-            margin-top: 10px;
-        }
-        .solana-animation {
-            width: 50px;
-            height: 50px;
-            position: relative;
-            margin: 20px auto;
-            animation: bounce 1s infinite alternate;
-        }
-        @keyframes bounce {
-            from {
-                transform: translateY(0);
-            }
-            to {
-                transform: translateY(-20px);
-            }
-        }
     </style>
 </head>
 <body>
@@ -95,70 +55,10 @@
         <img src="assets/images/S.jpg" alt="SERA AI Logo" class="logo">
         <h2>Welcome to SERA AI</h2>
         <p class="lead">The future of AI-based coins full of innovation and a global community.</p>
-
-        <!-- Mining Feature -->
-        <div class="mining-container">
-            <h3>Solana Wallet Mining</h3>
-            <label for="walletInput">Enter Wallet Address:</label>
-            <input type="text" id="walletInput" class="form-control mb-2" placeholder="Enter your Solana wallet">
-            <p>Wallet Address: <span id="walletAddress">Not set</span></p>
-            <p>Balance: <span id="balance">0 SOL</span></p>
-            <button id="setWalletButton" class="btn btn-secondary">Set Wallet</button>
-            <button id="mineButton" class="btn btn-primary">Start Mining</button>
-            <p id="loading">Mining in progress...</p>
-            <div id="terminal"></div>
-            <img src="assets/images/Solana-Coin-PNG.png" alt="Solana Pixel" class="solana-animation">
-        </div>
     </main>
     <footer class="text-white py-3">
         <p>&copy; 2025 SERA AI</p>
     </footer>
-
-    <script>
-        let walletAddress = "Not set";
-        let balance = 0;
-        document.getElementById("walletAddress").innerText = walletAddress;
-        
-        document.getElementById("setWalletButton").addEventListener("click", function() {
-            let input = document.getElementById("walletInput").value;
-            if (input) {
-                walletAddress = input;
-                document.getElementById("walletAddress").innerText = walletAddress;
-            }
-        });
-        
-        document.getElementById("mineButton").addEventListener("click", function() {
-            if (walletAddress === "Not set") {
-                alert("Please enter a valid wallet address first.");
-                return;
-            }
-            
-            let loadingText = document.getElementById("loading");
-            let terminal = document.getElementById("terminal");
-            terminal.innerHTML = "";
-            loadingText.style.display = "block";
-            
-            let duration = 180000; // 3 minutes
-            let intervalTime = 5000; // Log update every 5 seconds
-            let iterations = duration / intervalTime;
-            let index = 0;
-            
-            let interval = setInterval(() => {
-                if (index < iterations) {
-                    terminal.innerHTML += `Mining... Processing block ${index + 1} [Hash: ${Math.random().toString(36).substring(7)}]<br>`;
-                    terminal.scrollTop = terminal.scrollHeight;
-                    index++;
-                } else {
-                    clearInterval(interval);
-                    let reward = (Math.random() * 0.5).toFixed(3);
-                    balance += parseFloat(reward);
-                    document.getElementById("balance").innerText = balance.toFixed(3) + " SOL";
-                    loadingText.style.display = "none";
-                    terminal.innerHTML += `<span style='color:lime;'>Mining complete! Reward: ${reward} SOL</span><br>`;
-                }
-            }, intervalTime);
-        });
-    </script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
 </body>
 </html>
