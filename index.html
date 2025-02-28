@@ -97,6 +97,28 @@
                 transform: translateY(-20px);
             }
         }
+
+        /* Efek Ketik dan Kedip */
+        .typing-container {
+            text-align: center;
+            font-size: 24px;
+            color: #00ffff;
+            font-family: 'Press Start 2P', cursive;
+            margin-top: 50px;
+        }
+
+        .blinking {
+            animation: blink 0.8s infinite alternate;
+        }
+
+        @keyframes blink {
+            from {
+                opacity: 1;
+            }
+            to {
+                opacity: 0;
+            }
+        }
     </style>
 </head>
 <body>
@@ -118,28 +140,13 @@
             </div>
         </nav>
     </header>
-<p>
+
     <main class="container">
         <img src="assets/images/S.jpg" alt="SERA AI Logo" class="logo">
-</p>
-        <br>
-      <br>
-     <br>
-     <br>
-     <br>
-     <br>
-     <br>
-     <br>
-     <br>
-     <br>
-     <br>
-     <br>
-     <br>
-        <p>
-        <h2>Welcome to SERA AI</h2>
-        <p class="lead">The future of AI-based coins full of innovation and a global community.</p>
-</p>
-        <!-- Mining Feature -->
+        <div class="typing-container">
+            <h2 id="animatedText"></h2>
+        </div>
+
         <div class="mining-container">
             <h3>Solana Wallet Mining</h3>
             <label for="walletInput">Enter Wallet Address:</label>
@@ -159,49 +166,25 @@
     </footer>
 
     <script>
-        let walletAddress = "Not set";
-        let balance = 0;
-        document.getElementById("walletAddress").innerText = walletAddress;
+        const text = "Welcome to SERA AI\nThe future of AI-based coins full of innovation and a global community.";
+        const speed = 80;
+        const soundEffect = new Audio("assets/sounds/ai_typing.mp3"); 
 
-        document.getElementById("setWalletButton").addEventListener("click", function() {
-            let input = document.getElementById("walletInput").value;
-            if (input) {
-                walletAddress = input;
-                document.getElementById("walletAddress").innerText = walletAddress;
+        let index = 0;
+        function typeEffect() {
+            if (index < text.length) {
+                document.getElementById("animatedText").innerHTML += text.charAt(index);
+                soundEffect.play();
+                index++;
+                setTimeout(typeEffect, speed);
+            } else {
+                document.getElementById("animatedText").classList.add("blinking");
             }
-        });
+        }
 
-        document.getElementById("mineButton").addEventListener("click", function() {
-            if (walletAddress === "Not set") {
-                alert("Please enter a valid wallet address first.");
-                return;
-            }
-
-            let loadingText = document.getElementById("loading");
-            let terminal = document.getElementById("terminal");
-            terminal.innerHTML = "";
-            loadingText.style.display = "block";
-
-            let duration = 180000; // 3 minutes
-            let intervalTime = 5000; // Log update every 5 seconds
-            let iterations = duration / intervalTime;
-            let index = 0;
-
-            let interval = setInterval(() => {
-                if (index < iterations) {
-                    terminal.innerHTML += `Mining... Processing block ${index + 1} [Hash: ${Math.random().toString(36).substring(7)}]<br>`;
-                    terminal.scrollTop = terminal.scrollHeight;
-                    index++;
-                } else {
-                    clearInterval(interval);
-                    let reward = (Math.random() * 0.5).toFixed(3);
-                    balance += parseFloat(reward);
-                    document.getElementById("balance").innerText = balance.toFixed(3) + " SOL";
-                    loadingText.style.display = "none";
-                    terminal.innerHTML += `<span style='color:lime;'>Mining complete! Reward: ${reward} SOL</span><br>`;
-                }
-            }, intervalTime);
-        });
+        window.onload = () => {
+            setTimeout(typeEffect, 1000);
+        };
     </script>
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
