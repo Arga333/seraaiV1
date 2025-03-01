@@ -3,13 +3,14 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Home - SERA AI</title>
+    <title>SERA AI Dashboard</title>
     <link rel="icon" type="image/jpg" href="assets/images/A.jpg">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/web3/1.8.2/web3.min.js"></script>
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap');
-
+        
         body {
             background: url('assets/images/background2.jpg') no-repeat center center fixed;
             background-size: cover;
@@ -18,80 +19,36 @@
             text-align: center;
             position: relative;
         }
-
         .navbar {
             background: rgba(0, 0, 0, 0.8);
-            border-bottom: 2px solid rgba(0, 255, 255, 0.5);
         }
-
         .navbar-brand, .nav-link {
             color: #00ffff !important;
         }
-
-        .logo {
-            margin-top: 50px;
-            width: 100px;
-            height: auto;
-        }
-
         .container {
-            padding-top: 20px;
+            padding-top: 50px;
         }
-
-        .mining-container {
-            margin-top: 50px;
+        .chart-container {
+            width: 100%;
+            max-width: 800px;
+            margin: auto;
             padding: 20px;
             background: rgba(0, 0, 0, 0.8);
             border-radius: 10px;
             border: 2px solid rgba(0, 255, 255, 0.5);
-            box-shadow: 0 0 10px rgba(0, 255, 255, 0.7);
-            color: #00ff00;
-            font-family: monospace;
-            text-align: left;
         }
-
-        #loading {
-            display: none;
-            font-size: 14px;
-            color: yellow;
-        }
-
-        #terminal {
-            background: rgba(0, 0, 0, 0.9);
-            color: #00ff00;
-            font-family: monospace;
-            padding: 10px;
-            height: 200px;
-            overflow-y: auto;
-            text-align: left;
-            border-radius: 5px;
-            margin-top: 10px;
-            border: 2px solid rgba(0, 255, 255, 0.5);
-            box-shadow: 0 0 8px rgba(0, 255, 255, 0.7);
-        }
-
-        .solana-animation {
-            width: 50px;
-            height: 50px;
-            display: block;
-            margin: 20px auto;
-            position: relative;
-            animation: bounce 1s infinite alternate;
-        }
-
-        @keyframes bounce {
-            from {
-                transform: translateY(0);
-            }
-            to {
-                transform: translateY(-20px);
-            }
-        }
-
-        footer {
-            border-top: 2px solid rgba(0, 255, 255, 0.5);
-            padding: 10px;
+        .btn-custom {
+            background: #0088cc;
             color: white;
+            padding: 15px 25px;
+            font-size: 18px;
+            border: none;
+            border-radius: 10px;
+            text-decoration: none;
+            transition: 0.3s;
+        }
+        .btn-custom:hover {
+            background: #006699;
         }
     </style>
 </head>
@@ -100,73 +57,52 @@
         <nav class="navbar navbar-expand-lg">
             <div class="container">
                 <a class="navbar-brand" href="index.html">SERA AI</a>
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="collapse navbar-collapse" id="navbarNav">
+                    <ul class="navbar-nav ms-auto">
+                        <li class="nav-item"><a class="nav-link active" href="index.html">Home</a></li>
+                        <li class="nav-item"><a class="nav-link" href="about.html">About</a></li>
+                        <li class="nav-item"><a class="nav-link" href="chart.html">Chart</a></li>
+                        <li class="nav-item"><a class="nav-link" href="telegram.html">Telegram</a></li>
+                    </ul>
+                </div>
             </div>
         </nav>
     </header>
     <main class="container">
-        <img src="assets/images/A.jpg" alt="SERA AI Logo" class="logo">
-        <h2>Welcome to SERA AI</h2>
-        <p class="lead">GODLUCK</p>
-
-        <div class="mining-container">
-            <h3>Solana Wallet Mining</h3>
-            <label for="walletInput">Enter Wallet Address:</label>
-            <input type="text" id="walletInput" class="form-control mb-2" placeholder="Enter your Solana wallet">
-            <p>Wallet Address: <span id="walletAddress">Not set</span></p>
-            <p>Balance: <span id="balance">0 SOL</span></p>
-            <button id="setWalletButton" class="btn btn-secondary">Set Wallet</button>
-            <button id="mineButton" class="btn btn-primary">Start Mining</button>
-            <p id="loading">Mining in progress...</p>
-            <div id="terminal"></div>
-            <img src="assets/images/Solana-Coin-PNG.png" alt="Solana Pixel" class="solana-animation">
+        <h2>SERA AI Price Chart</h2>
+        <p class="lead">Monitor SERA AI's price and market movements.</p>
+        <div class="chart-container">
+            <canvas id="seraChart"></canvas>
         </div>
+        <br>
+        <a href="https://exchange-link.com" class="btn-custom" target="_blank">Trade Now</a>
     </main>
     <footer class="text-white py-3">
         <p>&copy; 2025 SERA AI</p>
     </footer>
     <script>
-        let walletAddress = "Not set";
-        let balance = 0;
-        document.getElementById("walletAddress").innerText = walletAddress;
-        
-        document.getElementById("setWalletButton").addEventListener("click", function() {
-            let input = document.getElementById("walletInput").value;
-            if (input) {
-                walletAddress = input;
-                document.getElementById("walletAddress").innerText = walletAddress;
+        const ctx = document.getElementById('seraChart').getContext('2d');
+        const seraChart = new Chart(ctx, {
+            type: 'line',
+            data: {
+                labels: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'],
+                datasets: [{
+                    label: 'SERA AI Price',
+                    data: [5, 6, 8, 10, 12, 15, 14, 18, 20, 25, 30, 35],
+                    borderColor: '#00ffff',
+                    borderWidth: 2,
+                    fill: false
+                }]
+            },
+            options: {
+                responsive: true,
+                maintainAspectRatio: false
             }
-        });
-        
-        document.getElementById("mineButton").addEventListener("click", function() {
-            if (walletAddress === "Not set") {
-                alert("Please enter a valid wallet address first.");
-                return;
-            }
-            let loadingText = document.getElementById("loading");
-            let terminal = document.getElementById("terminal");
-            terminal.innerHTML = "";
-            loadingText.style.display = "block";
-            
-            let duration = 180000;
-            let intervalTime = 5000;
-            let iterations = duration / intervalTime;
-            let index = 0;
-            
-            let interval = setInterval(() => {
-                if (index < iterations) {
-                    terminal.innerHTML += `Mining... Processing block ${index + 1} [Hash: ${Math.random().toString(36).substring(7)}]<br>`;
-                    terminal.scrollTop = terminal.scrollHeight;
-                    index++;
-                } else {
-                    clearInterval(interval);
-                    let reward = (Math.random() * 0.5).toFixed(3);
-                    balance += parseFloat(reward);
-                    document.getElementById("balance").innerText = balance.toFixed(3) + " SOL";
-                    loadingText.style.display = "none";
-                    terminal.innerHTML += `<span style='color:lime;'>Mining complete! Reward: ${reward} SOL</span><br>`;
-                }
-            }, intervalTime);
         });
     </script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
 </body>
 </html>
