@@ -22,7 +22,7 @@
 
         .navbar {
             background: rgba(0, 0, 0, 0.8);
-            border-bottom: 2px solid rgba(0, 0, 0, 0.5);
+            border-bottom: 2px solid rgba(0, 255, 255, 0.5);
         }
 
         .navbar-brand, .nav-link {
@@ -38,7 +38,7 @@
             color: white;
             padding: 15px 25px;
             font-size: 18px;
-            border: 2px solid rgba(0, 0, 0, 0.5);
+            border: 2px solid rgba(0, 255, 255, 0.5);
             border-radius: 10px;
             text-decoration: none;
             transition: 0.3s;
@@ -53,13 +53,14 @@
             max-width: 800px;
             margin: auto;
             padding: 20px;
-            background: rgba(255, 255, 255, 0.1);
+            background: rgba(0, 0, 0, 0.8);
             border-radius: 10px;
-            border: 2px solid rgba(0, 0, 0, 0.5);
+            border: 2px solid rgba(0, 255, 255, 0.5);
+            box-shadow: 0 0 10px rgba(0, 255, 255, 0.7);
         }
 
         footer {
-            border-top: 2px solid rgba(0, 0, 0, 0.5);
+            border-top: 2px solid rgba(0, 255, 255, 0.5);
             padding: 10px;
             color: white;
         }
@@ -115,7 +116,24 @@
             },
             options: {
                 responsive: true,
-                maintainAspectRatio: false
+                maintainAspectRatio: false,
+                plugins: {
+                    legend: {
+                        labels: {
+                            color: '#00ffff'
+                        }
+                    }
+                },
+                scales: {
+                    x: {
+                        ticks: { color: '#00ffff' },
+                        grid: { color: 'rgba(0, 255, 255, 0.3)' }
+                    },
+                    y: {
+                        ticks: { color: '#00ffff' },
+                        grid: { color: 'rgba(0, 255, 255, 0.3)' }
+                    }
+                }
             }
         });
     </script>
