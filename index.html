@@ -9,83 +9,47 @@
     <link rel="stylesheet" href="assets/css/style.css">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/web3/1.8.2/web3.min.js"></script>
     <style>
-@import url('https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap');
+        @import url('https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap');
 
-/* Background Image */
-body {
-    background: url('assets/images/background2.jpg') no-repeat center center fixed;
-    background-size: cover;
-    color: #00ffff;
-    font-family: 'Press Start 2P', cursive;
-    text-align: center;
-    position: relative;
-}
+        body {
+            background: url('assets/images/background2.jpg') no-repeat center center fixed;
+            background-size: cover;
+            color: #00ffff;
+            font-family: 'Press Start 2P', cursive;
+            text-align: center;
+        }
 
-.navbar {
-    background: rgba(0, 0, 0, 0.8);
-}
+        .navbar {
+            background: rgba(0, 0, 0, 0.8);
+        }
 
-.navbar-brand, .nav-link {
-    color: #00ffff !important;
-}
+        .navbar-brand, .nav-link {
+            color: #00ffff !important;
+        }
 
-.logo {
-    margin-top: 50px;
-    width: 100px;
-    height: auto;
-}
+        .logo {
+            margin-top: 50px;
+            width: 100px;
+            height: auto;
+        }
 
-.container {
-    padding-top: 20px;
-}
+        .blinking-text {
+            display: inline-block;
+            font-size: 24px;
+            color: #00ff00;
+            font-family: monospace;
+        }
 
-.mining-container {
-    margin-top: 50px;
-    padding: 20px;
-    background: rgba(0, 0, 0, 0.8);
-    border-radius: 10px;
-    color: #00ff00;
-    font-family: monospace;
-    text-align: left;
-}
+        @keyframes blink {
+            50% { opacity: 0; }
+        }
 
-#loading {
-    display: none;
-    font-size: 14px;
-    color: yellow;
-}
-
-#terminal {
-    background: black;
-    color: #00ff00;
-    font-family: monospace;
-    padding: 10px;
-    height: 200px;
-    overflow-y: auto;
-    text-align: left;
-    border-radius: 5px;
-    margin-top: 10px;
-}
-
-/* Animasi Solana Coin */
-.solana-animation {
-    width: 50px;
-    height: 50px;
-    display: block;
-    margin: 20px auto;
-    position: relative;
-    animation: bounce 1s infinite alternate;
-}
-
-@keyframes bounce {
-    from {
-        transform: translateY(0);
-    }
-    to {
-        transform: translateY(-20px);
-    }
-}
-
+        .chart-container {
+            margin-top: 20px;
+            background: rgba(0, 0, 0, 0.7);
+            padding: 20px;
+            border-radius: 10px;
+        }
     </style>
 </head>
 <body>
@@ -109,19 +73,8 @@ body {
     </header>
     <main class="container">
         <img src="assets/images/A.jpg" alt="SERA AI Logo" class="logo">
-        <h2>Welcome to SERA AI</h2>
-
-        
-
-
-        
-        <p class="lead">GODLUCK</p>
-
-
-
-
-        
-        <div class="mining-container">
+        <h2 id="welcome-text" class="blinking-text"></h2>
+        <div class="chart-container">
             <h3>Solana Wallet Mining</h3>
             <label for="walletInput">Enter Wallet Address:</label>
             <input type="text" id="walletInput" class="form-control mb-2" placeholder="Enter your Solana wallet">
@@ -129,9 +82,8 @@ body {
             <p>Balance: <span id="balance">0 SOL</span></p>
             <button id="setWalletButton" class="btn btn-secondary">Set Wallet</button>
             <button id="mineButton" class="btn btn-primary">Start Mining</button>
-            <p id="loading">Mining in progress...</p>
-            <div id="terminal"></div>
-            <img src="assets/images/Solana-Coin-PNG.png" alt="Solana Pixel" class="solana-animation">
+            <p id="loading" style="display:none; color: yellow;">Mining in progress...</p>
+            <div id="terminal" style="background: black; color: #00ff00; font-family: monospace; padding: 10px; height: 200px; overflow-y: auto; border-radius: 5px; margin-top: 10px;"></div>
         </div>
     </main>
     <footer class="text-white py-3">
@@ -180,7 +132,21 @@ body {
                 }
             }, intervalTime);
         });
+
+        let text = "Welcome to SERA AI";
+        let i = 0;
+        function typeWriter() {
+            if (i < text.length) {
+                document.getElementById("welcome-text").innerHTML += text.charAt(i);
+                i++;
+                setTimeout(typeWriter, 150);
+            } else {
+                setInterval(() => {
+                    document.getElementById("welcome-text").style.visibility = document.getElementById("welcome-text").style.visibility === 'hidden' ? 'visible' : 'hidden';
+                }, 500);
+            }
+        }
+        typeWriter();
     </script>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
 </body>
 </html>
